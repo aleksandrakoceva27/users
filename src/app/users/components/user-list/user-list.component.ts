@@ -3,12 +3,21 @@ import { User } from './../../models/user.model';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserFilterPipe } from '../../pipes/user-fiilter.pipe';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
-  providers: [UserFilterPipe]
+  providers: [UserFilterPipe],
+  animations: [
+    trigger('fade', [ 
+        transition('void => *', [
+          style({ opacity: 0 }), 
+          animate(2000, style({opacity: 1}))
+        ]) 
+      ])
+  ]
 })
 
 export class UserListComponent implements OnInit {

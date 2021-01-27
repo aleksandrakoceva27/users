@@ -8,7 +8,7 @@
                   </div>
               </div>
               
-              <p class="user-filter__no-users-found" *ngIf="(users | userFilter:searchText:filterMetadata).length === 0"> Results are empty! </p>
+              <p [@fade] class="user-filter__no-users-found" *ngIf="(users | userFilter:searchText:filterMetadata).length === 0"> Results are empty! </p>
               <p *ngIf="(searchText.length >=3) && ((users | userFilter:searchText:filterMetadata).length != 0)">Users found: <b>{{filterMetadata.count}}</b></p>
 
               <button class="filter-button" *ngIf="sortAsc" (click)="sortByAgeAsc()">Sort by Age</button>
@@ -36,10 +36,6 @@
 
           </ul>
 
-       </div>
-          <!-- <transition name="fade">
-            <span class="user-filter__no-users-found"></span>  
-          </transition>
-         -->
+       </div>     
     </div>
 </div>
