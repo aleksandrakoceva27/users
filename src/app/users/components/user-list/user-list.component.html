@@ -1,0 +1,45 @@
+<div class="codeflair-assignment row">
+    <div class="col-md-4 users-container">
+        <section class="user-filter">
+        <label for="input-field">Filter Users by Name</label>
+              <div class="form-group">
+                <div class="search-box" style="display: inline-block; vertical-align: top;">
+                    <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Search Users..." maxlength="100">
+                  </div>
+              </div>
+              
+              <p class="user-filter__no-users-found" *ngIf="(users | userFilter:searchText:filterMetadata).length === 0"> Results are empty! </p>
+              <p *ngIf="(searchText.length >=3) && ((users | userFilter:searchText:filterMetadata).length != 0)">Users found: <b>{{filterMetadata.count}}</b></p>
+
+              <button class="filter-button" *ngIf="sortAsc" (click)="sortByAgeAsc()">Sort by Age</button>
+              <button class="filter-button" *ngIf="sortDesc" (click)="sortByAgeDesc()">Sort by Age</button>           
+        </section>
+    
+       <div class="user-list">
+          <ul>
+            <li *ngFor="let user of users | userFilter:searchText:filterMetadata; let i = index; let first = first; let last = last;trackBy: trackElement" [ngClass]="{ 'first': first, 'last': last }">
+                <article class="user">
+                <button class="user__trigger" (click)="user.toggle=!user.toggle">
+                  <div><img class="user__image" src={{user.img}}></div>
+                  <div class="user__info">
+                    <h2></h2>
+                    <p class="user__name">{{user.firstname}}</p>
+                    <p class="user__age">{{user.age}}</p>
+                  </div>
+                </button>
+                <div  *ngIf="user.toggle" class="user__extra-info">
+                    <p>Email: {{user.email}}</p>
+                    <p>Address: {{user.address}}</p>
+                </div>
+              </article>
+            </li>
+
+          </ul>
+
+       </div>
+          <!-- <transition name="fade">
+            <span class="user-filter__no-users-found"></span>  
+          </transition>
+         -->
+    </div>
+</div>
