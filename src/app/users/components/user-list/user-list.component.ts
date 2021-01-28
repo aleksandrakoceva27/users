@@ -23,7 +23,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class UserListComponent implements OnInit {
 
     users: User[] = [];
-    @Output() onSearch: EventEmitter<string> = new EventEmitter();
     searchText: string = '';
     sortAsc: boolean = true;
     sortDesc: boolean = false;
@@ -50,6 +49,6 @@ export class UserListComponent implements OnInit {
 
     trackElement(index: number, element: any) {
         return element ? element.id : null;
-      }
+    }
 
 }
